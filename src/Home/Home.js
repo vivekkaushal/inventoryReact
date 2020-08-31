@@ -3,7 +3,9 @@ import { Button } from 'react-bootstrap';
 import history from './../history';
 import "./Home.css";
 
+
 export default class Home extends Component {
+
   render() {
     return (
       <div className="Home">
@@ -12,8 +14,8 @@ export default class Home extends Component {
           <p>A simple app showing react button click navigation</p>
           <form>
               <jumbotron>
-            <Button variant="warning" size="lg" onClick={() => history.push('/Products')}>Login</Button>
-            <Button variant="warning" size="lg" onClick={() => history.push('/Products')}>Sign Up</Button>
+            <Button variant="warning" size="lg" onClick={() => history.push('/Login')}>Login</Button>{''}
+            <Button variant="warning" size="lg" onClick={() => history.push('/Register')}>Sign Up</Button>
             </jumbotron>
           </form>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navbar.css';
-import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button, } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 const Navigation = (props) => {
@@ -14,7 +14,9 @@ const Navigation = (props) => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
                     <Nav.Link href="/Contact">Contact</Nav.Link>
-                    <Nav.Link href="/Products">Products</Nav.Link>
+                    <Nav.Link href="/Centerdetails">Center</Nav.Link>
+
+                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

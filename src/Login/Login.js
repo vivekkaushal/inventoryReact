@@ -1,37 +1,73 @@
 import React from "react";
-//import loginImg from "../../login.svg";
+import loginImg from "../Login/login.svg";
+import LoginLayout from "./component/LoginLayout";
+import RegisterLayout from "./component/RegisterLayout"
 
-export class Login extends React.Component{
-    constructor(props)
-    {
-        super (props)
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogginActive: true
+    };
+  }
+ 
+  componentDidMount() {
+    //Add .right by default
+    this.rightSide.classList.add("right");
+  }
+
+  changeState() {
+    const { isLogginActive } = this.state;
+
+    if (isLogginActive) {
+      this.rightSide.classList.remove("right");
+      this.rightSide.classList.add("left");
+    } else {
+      this.rightSide.classList.remove("left");
+      this.rightSide.classList.add("right");
     }
-    render(){      
-    return(
-        <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Login</div>
-        <div className="content">
-          <div className="image">
-            <img src={loginImg} />
+    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+  }
+
+  render() {
+    const { isLogginActive } = this.state;
+    const current = isLogginActive ? "Register" : "Login";
+    const currentActive = isLogginActive ? "login" : "register";
+    return (
+      <div className="App">
+        <div className="login">
+          <div className="container" ref={ref => (this.container = ref)}>
+            {isLogginActive && (
+              <LoginLayout containerRef={ref => (this.current = ref)} />
+            )}
+            {!isLogginActive && (
+              <RegisterLayout containerRef={ref => (this.current = ref)} />
+            )}
           </div>
-          <div className="form">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" />
-            </div>
-          </div>
-        </div>
-        <div className="footer">
-          <button type="button" className="btn">
-            Login
-          </button>
+          <RightSide
+            current={current}
+            currentActive={currentActive}
+            containerRef={ref => (this.rightSide = ref)}
+            onClick={this.changeState.bind(this)}
+          />
         </div>
       </div>
     );
   }
 }
 
+const RightSide = props => {
+  return (
+    <div
+      className="right-side"
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className="inner-container">
+        <div className="text">{props.current}</div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
